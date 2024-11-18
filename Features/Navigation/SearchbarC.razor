@@ -1,0 +1,27 @@
+﻿
+<div class="search-container"
+    <RadzenButton Click=Search Icon="search" class="search-icon" />
+    @* <RadzenIcon Icon="account_circle" @onclick="Search"/> *@
+    <RadzenTextBox @bind-Value="_searchInput" Placeholder="Search..." class="search-input"/>
+</div>
+
+
+@code {
+    private string? _searchInput;
+
+    private async Task HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await Search();
+        }
+    }
+
+    private Task Search()
+    {
+        Console.WriteLine($"Searching for: {_searchInput}");
+        // Perform your search logic here
+        return Task.CompletedTask;
+    }
+}
+

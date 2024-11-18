@@ -1,0 +1,9 @@
+﻿<div class="loading-overlay" style="@overlayStyle">
+    <div class="spinner"></div>
+</div>
+
+@code {
+    [Parameter] public bool IsVisible { get; set; }
+
+    private string overlayStyle => IsVisible ? "display: flex;" : "display: none;";
+}

@@ -1,0 +1,88 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@inject NavigationManager _nav
+@inject SignOutSessionStateManager _signOutManager
+@inject AuthenticationStateProvider _auth
+
+<div>
+    <AuthorizeView>
+        <Authorized>
+            <div class="account-profile-container">
+                <RadzenProfileMenu>
+                    <Template>
+                        <div class="profile-container">
+                            <RadzenGravatar Email="@userEmail" />
+                            <RadzenText Style="margin: 0;"> @userName </RadzenText>
+                        </div>
+                    </Template>
+                    <ChildContent>
+                        <RadzenProfileMenuItem Text="Log out" Style="color: black;" @onclick=BeginSignOut Icon="announcement"></RadzenProfileMenuItem>
+                    </ChildContent>
+                </RadzenProfileMenu>
+            </div>
+
+            @*    <div class="account-profile-container">
+            <div class="account-icon" style=@("background-image: url('" + "'"))></div>
+
+            <div class="account-name">
+            <Span>
+
+            </Span>
+            </div>
+            </div>
+
+            <a href="#" @onclick="BeginSignOut">Log out</a> *@
+        </Authorized>
+        <NotAuthorized>
+            <a href="authentication/login">Log in</a>
+        </NotAuthorized>
+    </AuthorizeView>
+</div>
+
+@code {
+    private string userName;
+    private string userEmail;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await _auth.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated ?? false)
+        {
+            // Get the user's name and email from the claims
+            userName = user.FindFirst(c => c.Type == "name")?.Value;
+            userEmail = user.FindFirst(c => c.Type == "email")?.Value;
+
+            StateHasChanged();
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        var authState = await _auth.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated ?? false)
+        {
+            // Get the user's name and email from the claims
+            userName = user.FindFirst(c => c.Type == "name")?.Value;
+            userEmail = user.FindFirst(c => c.Type == "email")?.Value;
+
+            // BeginSignOut(null);
+            StateHasChanged();
+        }
+    }
+
+    private async Task BeginSignOut(MouseEventArgs args)
+    {
+        await _signOutManager.SetSignOutState();
+        _nav.NavigateTo("authentication/logout");
+
+        StateHasChanged();
+    }
+}

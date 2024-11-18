@@ -1,3 +1,42 @@
+:root {
+    --rz-text-font-family: Arial !important;
+    --rz-text-title-color: black !important;
+    --rz-text-color: white !important;
+    --rz-text-secondary-color: black !important;
+    --rz-text-disabled-color: #DEDEE0;
+    --rz-body-background-color: #ffffff;
+    --rz-grid-border: 1px solid #632A2A !important;
+    --rz-grid-stripe-background-color: #DEDEE0;
+    --rz-grid-cell-color: #632A2A;
+    --rz-grid-hover-color: #394652;
+    --rz-grid-selected-background-color: #394652;
+    --rz-grid-hover-background-color: #394652;
+    --rz-grid-column-resizer-helper-background-color: #632A2A !important;
+    --rz-grid-header-background-color: #DEDEE0;
+    --rz-grid-filter-focus-color: #394652;
+    --rz-grid-apply-filter-button-background-color: #394652;
+    --rz-grid-foot-background-color: #ffffff;
+    --rz-grid-header-filter-icon-active-color: #00B2A9;
+    --rz-primary: #632A2A !important;
+    --rz-secondary: #394652;
+    --rz-success: #00B2A9;
+    --rz-info: #DEDEE0;
+    --rz-warning: #FFB500;
+    --rz-danger: #ED0089;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif
+}
+
+span {
+    color: var(--primary-text-color);
+}
+
+.sp-s {
+    color: var(--secondary-text-color);
+}
+
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
