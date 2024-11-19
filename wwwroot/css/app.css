@@ -1,8 +1,8 @@
 :root {
     --rz-text-font-family: Arial !important;
     --rz-text-title-color: black !important;
-    --rz-text-color: white !important;
-    --rz-text-secondary-color: black !important;
+    --rz-text-color: black !important;
+    --rz-text-secondary-color: white !important;
     --rz-text-disabled-color: #DEDEE0;
     --rz-body-background-color: #ffffff;
     --rz-grid-border: 1px solid #632A2A !important;
@@ -23,18 +23,11 @@
     --rz-info: #DEDEE0;
     --rz-warning: #FFB500;
     --rz-danger: #ED0089;
+    --rz-input-value-color: black !important;
 }
 
 body{
     font-family: Arial, Helvetica, sans-serif
-}
-
-span {
-    color: var(--primary-text-color);
-}
-
-.sp-s {
-    color: var(--secondary-text-color);
 }
 
 .valid.modified:not([type=checkbox]) {

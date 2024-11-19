@@ -18,7 +18,6 @@ builder.Services.AddOidcAuthentication(options =>
 	options.ProviderOptions.ResponseType = "code";
 });
 
-
 builder.Services.AddRadzenComponents();
 builder.Services.AddFontAwesomeIcons();
 

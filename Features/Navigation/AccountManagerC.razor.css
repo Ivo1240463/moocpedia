@@ -15,7 +15,9 @@
     border-radius: 50%;
 }
 
-.account-name {
+::deep .account-name {
+    margin: 0;
+    color: var(--rz-text-secondary-color);
 }
 
 .profile-container {

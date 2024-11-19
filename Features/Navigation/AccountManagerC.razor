@@ -1,88 +1,83 @@
-﻿@using Microsoft.AspNetCore.Components.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+﻿@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
+@* Dependencies *@
 @inject NavigationManager _nav
-@inject SignOutSessionStateManager _signOutManager
 @inject AuthenticationStateProvider _auth
+@inject IJSRuntime _js
 
+@* Content *@
 <div>
     <AuthorizeView>
         <Authorized>
-            <div class="account-profile-container">
-                <RadzenProfileMenu>
-                    <Template>
-                        <div class="profile-container">
-                            <RadzenGravatar Email="@userEmail" />
-                            <RadzenText Style="margin: 0;"> @userName </RadzenText>
-                        </div>
-                    </Template>
-                    <ChildContent>
-                        <RadzenProfileMenuItem Text="Log out" Style="color: black;" @onclick=BeginSignOut Icon="announcement"></RadzenProfileMenuItem>
-                    </ChildContent>
-                </RadzenProfileMenu>
-            </div>
-
-            @*    <div class="account-profile-container">
-            <div class="account-icon" style=@("background-image: url('" + "'"))></div>
-
-            <div class="account-name">
-            <Span>
-
-            </Span>
-            </div>
-            </div>
-
-            <a href="#" @onclick="BeginSignOut">Log out</a> *@
+            @if (_profileLoaded)
+            {
+                <div class="account-profile-container">
+                    <RadzenProfileMenu>
+                        <Template>
+                            <div class="profile-container">
+                                <RadzenGravatar Email="@_userEmail"></RadzenGravatar>
+                                <RadzenText class="account-name">@_userName</RadzenText>
+                            </div>
+                        </Template>
+                        <ChildContent>
+                            <RadzenButton Text="Log out" Icon="logout" Click="LogoutClick" Variant="Variant.Text" Size="ButtonSize.Small" Style="width: 100%;" />
+                        </ChildContent>
+                    </RadzenProfileMenu>
+                </div>
+            }
         </Authorized>
         <NotAuthorized>
-            <a href="authentication/login">Log in</a>
+            <RadzenButton Click="LoginClick" Text="Log in" ButtonStyle="ButtonStyle.Secondary" />
         </NotAuthorized>
     </AuthorizeView>
 </div>
 
 @code {
-    private string userName;
-    private string userEmail;
+    #region Data
+    private string? _userName = null;
+    private string? _userEmail = null;
+    private bool _profileLoaded = false;
+    #endregion
 
-    protected override async Task OnInitializedAsync()
-    {
-        var authState = await _auth.GetAuthenticationStateAsync();
-        var user = authState.User;
-
-        if (user.Identity?.IsAuthenticated ?? false)
-        {
-            // Get the user's name and email from the claims
-            userName = user.FindFirst(c => c.Type == "name")?.Value;
-            userEmail = user.FindFirst(c => c.Type == "email")?.Value;
-
-            StateHasChanged();
-        }
-    }
-
+    #region LifeCycle
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!firstRender)
-            return;
+        if (!_profileLoaded)
+        {
+            await LoadUserData();
+        }
+    }
+    #endregion
 
+    #region Functions
+    public async Task LoadUserData()
+    {
         var authState = await _auth.GetAuthenticationStateAsync();
         var user = authState.User;
 
         if (user.Identity?.IsAuthenticated ?? false)
         {
-            // Get the user's name and email from the claims
-            userName = user.FindFirst(c => c.Type == "name")?.Value;
-            userEmail = user.FindFirst(c => c.Type == "email")?.Value;
+            _userName = user.FindFirst(c => c.Type == "name")?.Value;
+            _userEmail = user.FindFirst(c => c.Type == "email")?.Value;
 
-            // BeginSignOut(null);
+            _profileLoaded = true;
             StateHasChanged();
         }
     }
+    #endregion
 
-    private async Task BeginSignOut(MouseEventArgs args)
+    #region Clicks
+    private void LoginClick()
     {
-        await _signOutManager.SetSignOutState();
-        _nav.NavigateTo("authentication/logout");
-
+        _nav.NavigateTo("authentication/login");
         StateHasChanged();
     }
+
+    private async Task LogoutClick()
+    {
+        // await _js.InvokeVoidAsync("logout");
+        _nav.NavigateToLogout("authentication/logout");
+        StateHasChanged();
+    }
+    #endregion
 }

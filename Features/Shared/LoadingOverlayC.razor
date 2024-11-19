@@ -3,7 +3,19 @@
 </div>
 
 @code {
-    [Parameter] public bool IsVisible { get; set; }
+    #region Parameters
+    [Parameter] 
+    public bool IsVisible { get; set; } = false;
+    #endregion
 
-    private string overlayStyle => IsVisible ? "display: flex;" : "display: none;";
+    #region Data
+    private string overlayStyle = "display: flex;";
+    #endregion
+
+    #region LifeCycle
+    protected override void OnParametersSet()
+    {
+        overlayStyle = IsVisible ? "display: flex;" : "display: none;";
+    }
+    #endregion
 }

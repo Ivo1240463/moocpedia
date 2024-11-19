@@ -1,10 +1,9 @@
 ﻿@page "/authentication/{action}"
+
 @using MOOCPediaApp.Features.Shared
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using Microsoft.Extensions.Configuration
 
-@inject NavigationManager Navigation
-@inject IConfiguration Configuration
+@inject NavigationManager _nav
 
 <RemoteAuthenticatorView Action="@Action">
     <LogOut>
@@ -12,17 +11,22 @@
             var authority = "https://dev-gh7hfiov68zh1phc.us.auth0.com";
             var clientId = "lMXkjd6tnOn4T51wFk7giyf4qQDHA5U7";
 
-            Navigation.NavigateTo($"{authority}/v2/logout?client_id={clientId}");
+            _nav.NavigateTo($"{authority}/v2/logout?client_id={clientId}");
         }
     </LogOut>
 
     <LoggingIn>
-        <LoadingOverlayC IsVisible="@isLoading" />
+        <LoadingOverlayC IsVisible="@_isLoading" />
     </LoggingIn>
 </RemoteAuthenticatorView>
 
 @code {
-    [Parameter] public string Action { get; set; }
+    #region Parameters
+    [Parameter]
+    public string Action { get; set; } = "";
+    #endregion
 
-    private bool isLoading = true;
+    #region Data
+    private bool _isLoading = true;
+    #endregion
 }
