@@ -2,10 +2,13 @@
 
 @using MOOCPediaApp.Features.Shared
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using System.Security.Claims
 
 @inject NavigationManager _nav
+@inject AuthenticationStateProvider _auth
+@inject IJSRuntime _js
 
-<RemoteAuthenticatorView Action="@Action">
+<RemoteAuthenticatorView Action="@Action" OnLogInSucceeded="FlagLoginAsync">
     <LogOut>
         @{
             var authority = "https://dev-gh7hfiov68zh1phc.us.auth0.com";
@@ -28,5 +31,15 @@
 
     #region Data
     private bool _isLoading = true;
+    #endregion
+
+    #region Functions
+    private async Task FlagLoginAsync()
+    {
+        var authState = await _auth.GetAuthenticationStateAsync();
+        var user = authState.User;
+        if (user.Identity?.IsAuthenticated ?? false)
+            _nav.NavigateTo("", true);
+    }
     #endregion
 }

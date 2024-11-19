@@ -9,6 +9,11 @@
 <div>
     <AuthorizeView>
         <Authorized>
+            @{
+                _authorized = true;
+                // _ = LoadUserData();
+            }
+
             @if (_profileLoaded)
             {
                 <div class="account-profile-container">
@@ -27,6 +32,9 @@
             }
         </Authorized>
         <NotAuthorized>
+            @{
+                _authorized = false;
+            }
             <RadzenButton Click="LoginClick" Text="Log in" ButtonStyle="ButtonStyle.Secondary" />
         </NotAuthorized>
     </AuthorizeView>
@@ -37,14 +45,18 @@
     private string? _userName = null;
     private string? _userEmail = null;
     private bool _profileLoaded = false;
+    private bool _authorized = true;
     #endregion
 
     #region LifeCycle
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (!_profileLoaded)
+        if (_authorized)
         {
-            await LoadUserData();
+            if (!_profileLoaded)
+            {
+                await LoadUserData();
+            }
         }
     }
     #endregion
@@ -70,14 +82,12 @@
     private void LoginClick()
     {
         _nav.NavigateTo("authentication/login");
-        StateHasChanged();
     }
 
     private async Task LogoutClick()
     {
-        // await _js.InvokeVoidAsync("logout");
+        // await _js.InvokeVoidAsync("localStorageHelper.removeItem", "login");
         _nav.NavigateToLogout("authentication/logout");
-        StateHasChanged();
     }
     #endregion
 }
