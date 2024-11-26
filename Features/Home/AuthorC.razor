@@ -1,0 +1,18 @@
+﻿@using MOOCPediaApp.Models
+
+<div class="base-container author-container">
+    <div class="author-img-container">
+        <div class="base-image-container author-img" style=@("background-image: url('images/" + Author.PhotoUrl + "')")></div>
+    </div>
+
+    <div class="base-container" style="flex-direction: column; gap: 5px;">
+        <span class="author-name">@Author.Name </span>
+
+        <span class="author-role"> @Author.Role </span>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public AuthorProfile Author { get; set; } = default!;
+}

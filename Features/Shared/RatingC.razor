@@ -1,0 +1,67 @@
+﻿<div class="rating-container">
+    @for (var i = 0; i < 5; i++)
+    {
+        var currentIndex = i + 1;
+        <div class=@("star" + (currentIndex <= _hoverIndex ? " hover" : "")) @onclick="() => ChangeRating(currentIndex)"
+        @onmouseenter="() => InHover(currentIndex)" @onmouseleave="() => OutHover()">
+
+            @if (_rating < currentIndex)
+            {
+                <div class="star-fill"></div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    #region Parameters
+    [Parameter]
+    public int Rating { get; set; } = 0;
+    #endregion
+
+    #region Data
+    private int _rating = 0;
+    private int _hoverIndex = 0;
+    #endregion
+
+    #region LifeCycle
+    protected override void OnParametersSet()
+    {
+        if (_rating != Rating)
+            _rating = Rating;
+    }
+    #endregion
+
+    #region Functions
+    void ChangeRating(int rating)
+    {
+        // Remove rating
+        if (rating == _rating)
+        {
+            _rating = 0;
+            Rating = 0;
+            StateHasChanged();
+            return;
+        }
+
+        _rating = rating;
+        Rating = rating;
+        StateHasChanged();
+    }
+
+    void InHover(int current)
+    {
+        if (current == _rating)
+            return;
+
+        _hoverIndex = current;
+        StateHasChanged();
+    }
+
+    void OutHover()
+    {
+        _hoverIndex = 0;
+        StateHasChanged();
+    }
+    #endregion
+}

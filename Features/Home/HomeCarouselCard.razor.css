@@ -1,1 +1,10 @@
 ﻿
+.home-card {
+    width: 100%;
+    height: 150px;
+    border-radius: var(--rz-card-border-radius);
+}
+
+.home-card-text{
+    font-size: small;
+}

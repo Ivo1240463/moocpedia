@@ -1,30 +1,30 @@
-﻿<RadzenCard Style="width: 300px; min-height: 250px; padding: 0;">
+﻿@using MOOCPediaApp.Models
+<RadzenCard Style="width: 350px; min-height: 250px; padding: 0;">
     @* Image *@
-    <div class="base-image-container" style="width: 100%; height: 150px; background-image: url('images/course-img.png')" />
+    <div class="base-image-container home-card" style="background-image: url('images/course-img.png')" />
 
-    <div style="padding: 0.5rem; display: flex; flex-direction: column;">
+    <div style="padding: 0.5rem; display: flex; flex-direction: column; gap: 1rem;">
         @* Title *@
         <div>
-            <h5 style="margin: 0;">
-                Photovoltaic Systems
-            </h5>
-            @* <RadzenText TextStyle="TextStyle.DisplayH5" Style="font-weight: bold;"/> *@
+            <h2 style="margin: 0;">
+                @Course.Title
+            </h2>
         </div>
 
         @* Description *@
         <div>
-            <span style="font-size: small;">This MOOC offers a comprehensive exploration of photovoltaic systems, covering renewable energy sources, solar geometry, and the principles behind solar power generation. You'll also learn about system installation, inverters, battery types, and maintenance, with a focus on practical applications for residential environments. </span>
-
-            @* <RadzenText Style="font-size: small !important;" /> *@
+            <span class="home-card-text" style="text-overflow: ellipsis;">@Course.Description</span>
         </div>
 
         @* Rating & Start *@
-        <div style="display: flex; gap: 0.5rem;">
-            <div>
+        <div class="base-container" style="justify-content: space-between">
+            <div class="base-container">
                 <div>
+                    <RatingC Rating="Course.Ratings"/>
                 </div>
 
-                <div>
+                <div class="base-container">
+                    <span class="home-card-text">@Course.Ratings.ToString()</span>
                     <RadzenIcon Icon="person" />
                 </div>
             </div>
@@ -37,5 +37,6 @@
 </RadzenCard>
 
 @code {
-
+    [Parameter, EditorRequired]
+    public CourseCard Course { get; set; } = default!;
 }

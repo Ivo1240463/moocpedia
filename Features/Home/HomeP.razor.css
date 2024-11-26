@@ -2,5 +2,24 @@
 .home-container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
+}
+
+.home-bottom {
+    /*padding: 3rem;*/
+    background: var(--rz-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.authors-container {
+    /*justify-content: space-between;*/
+    /*gap: 1rem;*/
+    gap: 4rem;
+    width: 50%;
+    margin: auto;
+    padding: 1rem;
+    flex-wrap: wrap;
 }

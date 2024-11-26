@@ -1,0 +1,32 @@
+﻿.author-container {
+    flex-direction: column;
+    width: 30%;
+    max-width: 150px;
+    /*min-width: 100px;*/
+}
+
+.author-img-container {
+    width: 100%;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    border: 5px solid var(--rz-text-secondary-color);
+}
+
+.author-img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+}
+
+.author-name {
+    color: var(--rz-text-secondary-color);
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.author-role {
+    color: var(--rz-text-secondary-color);
+    font-size: small;
+    text-align: center;
+}
