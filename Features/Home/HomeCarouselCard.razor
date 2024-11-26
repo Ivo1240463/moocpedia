@@ -1,0 +1,41 @@
+﻿<RadzenCard Style="width: 300px; min-height: 250px; padding: 0;">
+    @* Image *@
+    <div class="base-image-container" style="width: 100%; height: 150px; background-image: url('images/course-img.png')" />
+
+    <div style="padding: 0.5rem; display: flex; flex-direction: column;">
+        @* Title *@
+        <div>
+            <h5 style="margin: 0;">
+                Photovoltaic Systems
+            </h5>
+            @* <RadzenText TextStyle="TextStyle.DisplayH5" Style="font-weight: bold;"/> *@
+        </div>
+
+        @* Description *@
+        <div>
+            <span style="font-size: small;">This MOOC offers a comprehensive exploration of photovoltaic systems, covering renewable energy sources, solar geometry, and the principles behind solar power generation. You'll also learn about system installation, inverters, battery types, and maintenance, with a focus on practical applications for residential environments. </span>
+
+            @* <RadzenText Style="font-size: small !important;" /> *@
+        </div>
+
+        @* Rating & Start *@
+        <div style="display: flex; gap: 0.5rem;">
+            <div>
+                <div>
+                </div>
+
+                <div>
+                    <RadzenIcon Icon="person" />
+                </div>
+            </div>
+
+            <div>
+                <RadzenButton Text="Start" />
+            </div>
+        </div>
+    </div>
+</RadzenCard>
+
+@code {
+
+}

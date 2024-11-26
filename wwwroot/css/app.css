@@ -18,7 +18,7 @@
     --rz-grid-foot-background-color: #ffffff;
     --rz-grid-header-filter-icon-active-color: #00B2A9;
     --rz-primary: #632A2A !important;
-    --rz-secondary: #394652;
+    --rz-secondary: #CEB2B2 !important;
     --rz-success: #00B2A9;
     --rz-info: #DEDEE0;
     --rz-warning: #FFB500;
@@ -106,4 +106,10 @@ body{
 
 code {
     color: #c02d76;
+}
+
+.base-image-container {
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
 }
