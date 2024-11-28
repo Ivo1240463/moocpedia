@@ -1,11 +1,11 @@
 ﻿.home-bottom {
-    /*padding: 3rem;*/
     background: var(--rz-primary);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    justify-content: start;
 }
 
 .home-authors {
