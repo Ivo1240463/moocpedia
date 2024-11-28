@@ -1,0 +1,13 @@
+﻿.l-c-container {
+    background-color: var(--rz-secondary);
+    padding: 1rem;
+}
+
+    .l-c-container h1 {
+        margin-left: 4.5rem;
+        font-family: serif;
+    }
+
+::deep .l-carousel .rz-carousel-items {
+    padding: 5px;
+}

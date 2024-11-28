@@ -1,7 +1,8 @@
 ﻿@using MOOCPediaApp.Models
+
 <RadzenCard Style="width: 350px; min-height: 250px; padding: 0;">
     @* Image *@
-    <div class="base-image-container home-card" style="background-image: url('images/course-img.png')" />
+    <div class="base-image-container home-card" style="background-image: url('images/course-img.png'); padding-top: 0.5rem;" />
 
     <div style="padding: 0.5rem; display: flex; flex-direction: column; gap: 1rem;">
         @* Title *@
@@ -37,6 +38,8 @@
 </RadzenCard>
 
 @code {
+    #region Parameters
     [Parameter, EditorRequired]
     public CourseCard Course { get; set; } = default!;
+    #endregion
 }

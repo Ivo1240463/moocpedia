@@ -1,32 +1,41 @@
 ﻿.author-container {
-    flex-direction: column;
-    width: 30%;
-    max-width: 150px;
-    /*min-width: 100px;*/
+    gap: 0.5rem;
+    height: 100%;
+    flex: 1;
+    min-width: 200px;
+    max-height: 50px;
+    background: white;
+    border-radius: 100vmax;
+    padding: 0.5rem;
+    justify-content: normal;
 }
 
 .author-img-container {
-    width: 100%;
-    border-radius: 50%;
-    aspect-ratio: 1;
-    border: 5px solid var(--rz-text-secondary-color);
+    width: 50px;
 }
 
 .author-img {
-    width: 100%;
     aspect-ratio: 1;
     border-radius: 50%;
+    background-size: auto 100%;
 }
 
 .author-name {
-    color: var(--rz-text-secondary-color);
+    color: var(--rz-primary);
     font-size: large;
     font-weight: bold;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .author-role {
-    color: var(--rz-text-secondary-color);
+    color: var(--rz-secondary);
     font-size: small;
-    text-align: center;
+    /*text-align: center;*/
+}
+
+.author-info-container {
+    align-items: normal;
+    gap: 0;
+    flex-direction: column;
+    flex: 1;
 }

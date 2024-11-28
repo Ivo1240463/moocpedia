@@ -1,0 +1,37 @@
+﻿@using MOOCPediaApp.Models
+
+<div class="l-c-container b-c-h ">
+    <div class="b-c-size" style="margin: auto;">
+        <div>
+            <h1>Explore our latest MOOC</h1>
+        </div>
+
+        <RadzenCarousel class="l-carousel" Style="padding: 0 75px;" PagerOverlay=false>
+            <Items>
+                @foreach (var course in _courses)
+                {
+                    <HomeCarouselCard Course="course" />
+                }
+            </Items>
+        </RadzenCarousel>
+    </div>
+</div>
+
+@code {
+    #region Data
+    List<CourseCard> _courses = new();
+    #endregion
+
+    #region LifeCycle
+    protected override void OnInitialized()
+    {
+        var course = new CourseCard
+            {
+                Title = "Photovoltaic Systems",
+                Description = "This MOOC offers a comprehensive exploration of photovoltaic systems, covering renewable energy sources, solar geometry, and the principles behind solar power generation. You'll also learn about system installation, inverters, battery types, and maintenance, with a focus on practical applications for residential environments. "
+            };
+
+        _courses.Add(course);
+    }
+    #endregion
+}

@@ -1,0 +1,27 @@
+﻿.home-bottom {
+    /*padding: 3rem;*/
+    background: var(--rz-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.home-authors {
+    padding: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+.authors-container {
+    gap: 1rem;
+    margin: auto;
+    padding: 1rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.authors-title{
+    margin: 0;
+}

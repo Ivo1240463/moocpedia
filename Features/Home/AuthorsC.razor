@@ -1,0 +1,48 @@
+﻿@using MOOCPediaApp.Models
+
+<div class="home-bottom">
+    <div class="base-container b-c-size home-authors">
+        <h1 class="authors-title" style="color: var(--rz-text-secondary-color);">Authors</h1>
+
+        <div class="base-container authors-container">
+
+            @foreach (var author in _authors)
+            {
+                <AuthorC Author="author" />
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    List<AuthorProfile> _authors = new();
+
+    protected override void OnInitialized()
+    {
+
+        var author1 = new AuthorProfile
+            {
+                Name = "Ivo Martins",
+                PhotoUrl = "ivo-profile.jpg",
+                Role = "Full-stack Developer"
+            };
+
+        var author2 = new AuthorProfile
+            {
+                Name = "Simão Amaral",
+                PhotoUrl = "simao-profile.jpg",
+                Role = "Font-end Developer"
+            };
+
+        var author3 = new AuthorProfile
+            {
+                Name = "João Victor",
+                PhotoUrl = "joao-profile",
+                Role = "Designer"
+            };
+
+        _authors.Add(author1);
+        _authors.Add(author2);
+        _authors.Add(author3);
+    }
+}

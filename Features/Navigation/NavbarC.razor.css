@@ -1,14 +1,32 @@
 ﻿.nav-container {
     background: var(--rz-primary);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 0.5rem;
+    display: grid;
+}
+
+.nav-body {
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin: auto;
+    width: 100%;
 }
 
 .logo-span {
     font-weight: bold;
     color: var(--rz-text-secondary-color);
     font-size: larger;
+    padding: 1rem;
+}
+
+.nav-search-container {
+    flex: 1;
+    max-width: 500px;
+    margin: auto;
+}
+
+@media(max-width: 700px) {
+    .nav-search-container {
+        flex: 100%;
+        order: 2;
+    }
 }

@@ -2,7 +2,7 @@
 .home-card {
     width: 100%;
     height: 150px;
-    border-radius: var(--rz-card-border-radius);
+    border-radius: var(--rz-card-border-radius) var(--rz-card-border-radius) 0 0;
 }
 
 .home-card-text{

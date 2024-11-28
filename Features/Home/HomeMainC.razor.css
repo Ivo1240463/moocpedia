@@ -1,0 +1,30 @@
+﻿.h-m-image {
+    background-image: url(images/home-photo-1.png);
+    flex: 1;
+    background-position: right;
+}
+
+.h-i-overlay {
+    width: 100%;
+    height: 100%;
+    backdrop-filter: brightness(0.5);
+}
+
+.home-slogan {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 1rem;
+    height: 100%;
+    margin: auto;
+}
+
+    .home-slogan span {
+        color: var(--rz-text-secondary-color);
+        font-size: xx-large;
+        max-width: 450px;
+        text-align: center;
+        font-family: serif;
+        text-shadow: 1px 1px 1px black;
+        padding: 1rem;
+    }
