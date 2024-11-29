@@ -1,0 +1,48 @@
+﻿@typeparam TItem
+@using MOOCPediaApp.Models
+
+<div class="course-content">
+    <h3>Course content</h3>
+    @foreach (var courseSection in Sections)
+    {
+        <div class="accordion">
+            <button class="accordion-header" @onclick="() => ToggleSection(courseSection)">
+                <div class="section-info">
+                    <span class="section-title">@courseSection.Title</span>
+                    <span class="section-meta">@courseSection.Lessons.Count / @courseSection.Lessons.Sum(lesson => ParseDuration(lesson.Duration)) min</span>
+                </div>
+                <span>@(courseSection.IsExpanded ? "▼" : "▶")</span>
+            </button>
+            @if (courseSection.IsExpanded)
+            {
+                <div class="accordion-body">
+                    @foreach (var lesson in courseSection.Lessons)
+                    {
+                        <div class="lesson">
+                            <label class="lesson-check">
+                                <input type="checkbox" />
+                                <span>@lesson.Name</span>
+                            </label>
+                            <span class="lesson-duration">@lesson.Duration</span>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public required List<CourseSection> Sections { get; set; }
+
+    private void ToggleSection(CourseSection courseSection)
+    {
+        courseSection.IsExpanded = !courseSection.IsExpanded;
+    }
+
+    private int ParseDuration(string duration)
+    {
+        return int.TryParse(duration.Split(' ')[0], out var result) ? result : 0;
+    }
+}

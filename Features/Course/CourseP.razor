@@ -1,0 +1,77 @@
+﻿@page "/course"
+@using MOOCPediaApp.Models
+@inject NavigationManager NavigationManager
+@using MOOCPediaApp.Features.Course
+
+<div class="course-container">
+        <div class="course-top">
+            <img src="images/course-img.png" alt="Photovoltaics" class="course-image" />
+                <CourseContentC TItem="CourseSection" Sections="CourseSections" />
+        </div>
+        <div class="tabs">
+            <button class="tab selected">Overview</button>
+            <button class="tab">Notes</button>
+            <button class="tab">Announcements</button>
+            <button class="tab">Reviews</button>
+            <button class="tab">Learning Tools</button>
+        </div>
+        <div class="main-content">
+            <div class="ratings">
+                <div class="rating-container">
+                    <span class="rating-title">
+                        <span class="rating-value">4.6</span>
+                        <span class="rating-star">⭐</span>
+                    </span>
+                    <span class="rating-subtitle">325 ratings</span>
+                </div>
+                <div class="rating-container">
+                    <span class="rating-title">565</span>
+                    <span class="rating-subtitle">Students</span>
+                </div>
+                <div class="rating-container">
+                    <span class="rating-title">4.2 hours</span>
+                    <span class="rating-subtitle">Total</span>
+                </div>
+            </div>
+            <div class="course-description">
+                <p>
+                    Ready to dive into the exciting world of solar energy?
+                    This "comprehensive" and "in-depth" Photovoltaics course is designed to guide you through the science and technology of solar power...
+                </p>
+            </div>
+        </div>
+</div>
+
+
+@code {
+    private List<CourseSection> CourseSections = new()
+    {
+        new CourseSection
+        {
+            Title = "Section 1: Photovoltaics - Principles and Operation",
+            Lessons = new List<Lesson>
+            {
+                new Lesson { Name = "Introduction", Duration = "1 min" },
+                new Lesson { Name = "Principles of Solar Energy", Duration = "10 min" }
+            }
+        },
+        new CourseSection
+        {
+            Title = "Section 2: Inverters - Functionalities and Systems",
+            Lessons = new List<Lesson>
+            {
+                new Lesson { Name = "Introduction", Duration = "1 min" },
+                new Lesson { Name = "What are Inverters", Duration = "5 min" }
+            }
+        },
+        new CourseSection
+        {
+            Title = "Section 3: Batteries - Types and Applications",
+            Lessons = new List<Lesson>
+            {
+                new Lesson { Name = "Introduction to Batteries", Duration = "2 min" },
+                new Lesson { Name = "Battery Technologies", Duration = "10 min" }
+            }
+        }
+    };
+}
