@@ -8,10 +8,15 @@
         <div class="video-section">
             @if (!string.IsNullOrEmpty(VideoSource))
             {
-                <video controls autoplay class="course-video">
-                    <source src="@VideoSource" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+                <iframe width="560"
+                        height="315"
+                        src="@VideoSource"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        class="course-video">
+                </iframe>
             }
             else
             {
@@ -122,8 +127,10 @@
             Title = "Section 1: Photovoltaics - Principles and Operation",
             Lessons = new List<Lesson>
             {
-                new Lesson { Name = "Introduction", Duration = "1 min", VideoPath = "videos/introduction.mp4" },
-                new Lesson { Name = "Principles of Solar Energy", Duration = "10 min", VideoPath = "videos/principles_of_solar_energy.mp4" }
+                new Lesson { Name = "Introduction to Photovoltaics", Duration = "2 min", VideoPath = "https://drive.google.com/file/d/1CXy1-qZq3W_1oUt_NfGpDKtCSkgMvXYG/preview", IsWatched = true },
+                new Lesson { Name = "Photovoltaic Cells Operation", Duration = "2 min", VideoPath = "https://drive.google.com/file/d/16pOcNw9P9-o0B7Jn9gZyRHx9T9laLF-L/preview" },
+                new Lesson { Name = "Types of Photovoltaic Cells", Duration = "1 min", VideoPath = "https://drive.google.com/file/d/1UD32l7BIgKg6RkeMTDqrTt6iAshFaFIh/preview" }
+				// new Lesson { Name = "Applications of Photovoltaics", Duration = "5 min", VideoPath = "https://drive.google.com/file/d/1UD32l7BIgKg6RkeMTDqrTt6iAshFaFIh/preview" }
             }
         },
         new CourseSection
@@ -131,8 +138,12 @@
             Title = "Section 2: Inverters - Functionalities and Systems",
             Lessons = new List<Lesson>
             {
-                new Lesson { Name = "Introduction", Duration = "1 min", VideoPath = "videos/inverters_introduction.mp4" },
-                new Lesson { Name = "What are Inverters", Duration = "5 min", VideoPath = "videos/what_are_inverters.mp4" }
+                new Lesson { Name = "What are Inverters?", Duration = "1 min", VideoPath = "videos/inverters_introduction.mp4" },
+                new Lesson { Name = "Inverters: Functionalities and Systems", Duration = "5 min", VideoPath = "videos/what_are_inverters.mp4" },
+                new Lesson { Name = "Inverters: Components", Duration = "5 min", VideoPath = "videos/inverters_types_and_applications.mp4" }
+                // Assignment
+               // Quiz
+               // Lecture text
             }
         },
         new CourseSection
@@ -140,8 +151,10 @@
             Title = "Section 3: Batteries - Types and Applications",
             Lessons = new List<Lesson>
             {
-                new Lesson { Name = "Introduction to Batteries", Duration = "2 min", VideoPath = "videos/introduction_to_batteries.mp4" },
-                new Lesson { Name = "Battery Technologies", Duration = "10 min", VideoPath = "videos/battery_technologies.mp4" }
+                // Document - new Lesson { Name = "History of Batteries", Duration = "2 min", VideoPath = "videos/introduction_to_batteries.mp4" },
+                new Lesson { Name = "Battery Types", Duration = "10 min", VideoPath = "videos/battery_technologies.mp4" },
+                new Lesson { Name = "Battery Compositions", Duration = "10 min", VideoPath = "videos/battery_technologies.mp4" }
+                // Quiz
             }
         }
     };
