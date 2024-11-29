@@ -19,12 +19,12 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-
         if (firstRender)
         {
             if (Url == "")
                 return;
 
+            Url = _nav.BaseUri + Url;
             _base64 = await GetFileAsBase64Url(Url);
             StateHasChanged();
         }
