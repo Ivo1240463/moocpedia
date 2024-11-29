@@ -1,6 +1,8 @@
 ﻿@using MOOCPediaApp.Models
 
-<RadzenCard Style="width: 350px; min-height: 250px; padding: 0;">
+@inject NavigationManager _nav
+
+<RadzenCard Style="width: 350px; min-height: 250px; padding: 0; cursor: pointer" @onclick="GoToCourseDetailsClick">
     @* Image *@
     <div class="base-image-container home-card" style="background-image: url('images/course-img.png'); padding-top: 0.5rem;" />
 
@@ -31,7 +33,7 @@
             </div>
 
             <div>
-                <RadzenButton Text="Start" Click="NavigateToCourses" />
+                <RadzenButton Text="Start" Click="GoToCourseClick" />
             </div>
         </div>
     </div>
@@ -43,15 +45,15 @@
     public CourseCard Course { get; set; } = default!;
     #endregion
 
-    #region Dependencies
-    [Inject]
-    public NavigationManager NavigationManager { get; set; } = default!;
-    #endregion
-
-    #region Methods
-    private void NavigateToCourses()
+    #region Clicks
+    public void GoToCourseClick()
     {
-        NavigationManager.NavigateTo("/course");
+        _nav.NavigateTo("/course");
+    }
+
+    public void GoToCourseDetailsClick()
+    {
+        _nav.NavigateTo("/course/details");
     }
     #endregion
 }

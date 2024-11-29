@@ -1,0 +1,14 @@
+﻿
+<div>
+    <RadzenIcon Icon="@Icon"/>
+
+    <span>@Text</span>
+</div>
+
+@code {
+    [Parameter]
+    public string Icon { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
+}

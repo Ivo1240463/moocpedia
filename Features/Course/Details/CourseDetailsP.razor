@@ -1,0 +1,161 @@
+﻿@page "/course/details"
+@using MOOCPediaApp.Models
+
+<PageTitle>@_course.Name</PageTitle>
+
+@inject NavigationManager _nav
+
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    @* Header *@
+    <div>
+        <div class="base-image-container" style="background-image: url('images/@_course.ImageUrl')">
+            <div class="base-container b-c-size b-c-h course-title-container"
+                 style="min-height: 350px; backdrop-filter: brightness(0.8);">
+                <span class="course-title">@_course.Name</span>
+            </div>
+        </div>
+
+        <div class="base-container b-c-size" style="margin: auto; padding-top: 0.5rem; padding-bottom: 1rem;">
+            <span>@_course.Description</span>
+        </div>
+    </div>
+
+    <div class="b-c-size" style="width: 100%;">
+        @* Rating + Operations *@
+        <div style="display: flex; justify-content: space-between; gap: 0.5rem;">
+            <div style="display: flex; gap: 0.5rem;">
+                <RatingC Rating="@_course.Rating" />
+
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <span>@(_course.Students) students</span>
+                    <RadzenIcon Icon="person" />
+                </div>
+            </div>
+            <div>
+                <RadzenButton Text="Start" Click="GoToCourseClick" />
+            </div>
+        </div>
+
+        @* Content *@
+        <div style="margin-top: 1rem;">
+            <div style="padding-top: 1rem; padding-bottom: 1rem;">
+                <span class="course-content-title">Course Content</span>
+            </div>
+
+            <div class="content-division">
+                @* Contents *@
+                <div>
+                    <RadzenAccordion class="course-accordion" SelectedIndex="0">
+                        <Items>
+                            @foreach (var chapter in _course.CourseContents)
+                            {
+                                <RadzenAccordionItem Text="@chapter.Name">
+                                    @foreach (var unit in chapter.SubContents)
+                                    {
+                                        <div class="course-sub-content">
+                                            <span>@unit.Name</span>
+                                        </div>
+                                    }
+                                </RadzenAccordionItem>
+                            }
+                        </Items>
+                    </RadzenAccordion>
+                </div>
+
+                @* Includes *@
+                <div>
+                    <span class="title-includes">
+                        This course includes:
+                    </span>
+
+                    <div >
+                        <CourseIncludesC class="accot" Icon="smart_display" Text=@(_course.VideoTime + " minutes on-demand video") />
+                        <CourseIncludesC Icon="analytics" Text=@(_course.QuizCount + " quizzes") />
+                        <CourseIncludesC Icon="article" Text=@(_course.QuizCount + " articles") />
+                        <CourseIncludesC Icon="download" Text=@(_course.QuizCount + " downloadable resources") />
+                        <CourseIncludesC Icon="desktop_windows" Text="Access on mobile and TV" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    #region Data
+    private CourseDetails _course = new();
+    #endregion
+
+    #region LifeCycle
+    protected override void OnInitialized()
+    {
+        var chapter3 = new CourseContents
+            {
+                Name = "Photovoltaics: Principles and Operation",
+                SubContents = new List<CourseContents>
+                {
+                    new CourseContents {Name = "Introduction to Photovoltaics"},
+                    new CourseContents {Name = "Photovoltaic Cells Operation"},
+                    new CourseContents {Name = "Types of Photovoltaic Cells"},
+                    new CourseContents {Name = "Types of Photovoltaic Cells"},
+                    new CourseContents {Name = "Applications of Photovoltaics"},
+                }
+            };
+
+
+        var chapter5 = new CourseContents
+            {
+                Name = "Inverters: Functionalities and Systems",
+                SubContents = new List<CourseContents>
+                {
+                    new CourseContents {Name = "What are Inverters?"},
+                    new CourseContents {Name = "Functionalities and Systems"},
+                    new CourseContents {Name = "Inverters: Components"},
+                    new CourseContents {Name = "Activity - Matterport"},
+                    new CourseContents {Name = "Knowledge check"},
+                    new CourseContents {Name = "Summary"},
+                }
+            };
+
+        var chapter7 = new CourseContents
+            {
+                Name = "Batteries: Types and Applications",
+                SubContents = new List<CourseContents>
+                {
+                    new CourseContents {Name = "History of batteries"},
+                    new CourseContents {Name = "Batery Types"},
+                    new CourseContents {Name = "Batery Compositions"},
+                    new CourseContents {Name = "Quiz and Summary"},
+                }
+            };
+
+        _course = new CourseDetails
+            {
+                Name = "Photovoltaic Systems",
+                Description = "This MOOC offers a comprehensive exploration of photovoltaic systems, covering renewable energy sources, solar geometry, and the principles behind solar power generation. You'll also learn about system installation, inverters, battery types, and maintenance, with a focus on practical applications for residential environments.",
+                ImageUrl = "course-img.png",
+                Students = 0,
+                Rating = 0,
+                VideoTime = 11,
+                QuizCount = 2,
+                ArticlesCount = 4,
+                DownloadableResourcesCount = 2,
+                CourseContents = new List<CourseContents>
+                {
+                    chapter3,
+                    chapter5,
+                    chapter7
+                }
+            };
+    }
+    #endregion
+
+    #region Clicks
+    void GoToCourseClick()
+    {
+        _nav.NavigateTo("course");
+    }
+
+    #endregion
+}

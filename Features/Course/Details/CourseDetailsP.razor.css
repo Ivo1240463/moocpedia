@@ -1,0 +1,52 @@
+﻿.course-title-container {
+    justify-content: left;
+    padding: 1rem;
+    align-items: end;
+}
+
+.course-title {
+    font-size: xxx-large;
+    color: white;
+    font-family: serif;
+}
+
+.course-content-title {
+    font-size: x-large;
+    font-weight: bold;
+    font-family: serif;
+}
+
+::deep .course-accordion .rz-accordion-header {
+    background-color: var(--rz-primary);
+}
+
+    ::deep .course-accordion .rz-accordion-header a,
+    ::deep .course-accordion .rz-accordion-header span {
+        color: white !important;
+    }
+
+::deep .course-accordion .rz-accordion-content {
+    padding: 0;
+}
+
+::deep .course-sub-content {
+    border: 1px solid var(--rz-primary);
+    padding: 1rem;
+    background-color: #E4E0E0;
+}
+
+.content-division {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+    .content-division div {
+        flex: 1;
+    }
+
+.title-includes {
+    font-size: large;
+    font-weight: bold;
+}
