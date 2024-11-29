@@ -19,10 +19,13 @@
                     @foreach (var lesson in courseSection.Lessons)
                     {
                         <div class="lesson">
-                            <label class="lesson-check">
-                                <input type="checkbox" />
-                                <span @onclick="() => OnLessonClick(lesson)">@lesson.Name</span>
-                            </label>
+                            <div class="lesson-check" @onclick="() => OnLessonClick(lesson)">
+                                <span>@lesson.Name</span>
+                                @if (lesson.IsWatched)
+                                {
+                                    <span class="watched-indicator">👁️</span>
+                                }
+                            </div>
                             <span class="lesson-duration">@lesson.Duration</span>
                         </div>
                     }
@@ -46,6 +49,7 @@
 
     private void OnLessonClick(Lesson lesson)
     {
+        lesson.IsWatched = true; 
         LessonClicked.InvokeAsync(lesson);
     }
 
