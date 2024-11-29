@@ -21,7 +21,7 @@
         <div class="base-container" style="justify-content: space-between">
             <div class="base-container">
                 <div>
-                    <RatingC Rating="Course.Ratings"/>
+                    <RatingC Rating="Course.Ratings" />
                 </div>
 
                 <div class="base-container">
@@ -31,7 +31,7 @@
             </div>
 
             <div>
-                <RadzenButton Text="Start" />
+                <RadzenButton Text="Start" Click="NavigateToCourses" />
             </div>
         </div>
     </div>
@@ -41,5 +41,17 @@
     #region Parameters
     [Parameter, EditorRequired]
     public CourseCard Course { get; set; } = default!;
+    #endregion
+
+    #region Dependencies
+    [Inject]
+    public NavigationManager NavigationManager { get; set; } = default!;
+    #endregion
+
+    #region Methods
+    private void NavigateToCourses()
+    {
+        NavigationManager.NavigateTo("/course");
+    }
     #endregion
 }

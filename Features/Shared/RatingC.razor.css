@@ -1,4 +1,4 @@
-﻿.rating-container {
+﻿.main-rating-container {
     --star-bg: white;
     --star-color: hsl(38 90% 55%);
     display: flex;

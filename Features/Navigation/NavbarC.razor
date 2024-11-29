@@ -2,7 +2,10 @@
     <div class="base-container nav-body b-c-size">
         <div>
             @* Logo *@
-            <span class="logo-span">MOOCpedia</span>
+            <a href="javascript:void(0)" @onclick="NavigateToHome" style="text-decoration: none; color: inherit; cursor: pointer;">
+                <span class="logo-span">MOOCpedia</span>
+            </a>
+
 
             @* Categories *@
         </div>
@@ -18,3 +21,13 @@
         </div>
     </div>
 </div>
+
+@code {
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = default!;
+
+    private void NavigateToHome()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

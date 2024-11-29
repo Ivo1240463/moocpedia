@@ -298,3 +298,78 @@ code {
     color: #666;
 }
 
+.course-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.course-top {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 60%;
+}
+
+.video-section {
+    flex: 0.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.course-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.no-video-selected {
+    text-align: center;
+    font-size: 16px;
+    color: #777;
+}
+
+.lesson-picker {
+    flex: 0.4;
+    overflow-y: auto;
+    padding: 15px;
+    height: 100%;
+}
+
+.course-content {
+    font-size: 14px;
+    background-color: #f9f9f9;
+    width: 100%;
+    height: fit-content;
+}
+
+.accordion-body {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lesson {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lesson-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lesson-duration {
+    font-size: 12px;
+    color: #666;
+}
+
+

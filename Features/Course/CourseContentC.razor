@@ -21,7 +21,7 @@
                         <div class="lesson">
                             <label class="lesson-check">
                                 <input type="checkbox" />
-                                <span>@lesson.Name</span>
+                                <span @onclick="() => OnLessonClick(lesson)">@lesson.Name</span>
                             </label>
                             <span class="lesson-duration">@lesson.Duration</span>
                         </div>
@@ -36,9 +36,17 @@
     [Parameter]
     public required List<CourseSection> Sections { get; set; }
 
+    [Parameter]
+    public EventCallback<Lesson> LessonClicked { get; set; }
+
     private void ToggleSection(CourseSection courseSection)
     {
         courseSection.IsExpanded = !courseSection.IsExpanded;
+    }
+
+    private void OnLessonClick(Lesson lesson)
+    {
+        LessonClicked.InvokeAsync(lesson);
     }
 
     private int ParseDuration(string duration)
