@@ -1,0 +1,44 @@
+﻿@inject NavigationManager _nav
+
+@if (_base64 != null)
+{
+    <iframe src="@Url" width="800" height="600" frameborder="0"></iframe>
+}
+
+@code {
+    [Parameter]
+    public string Url { get; set; } = string.Empty;
+
+    [Parameter]
+    public int Width { get; set; } = 800;
+
+    [Parameter]
+    public int Height { get; set; } = 600;
+
+    private string? _base64;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+
+        if (firstRender)
+        {
+            if (Url == "")
+                return;
+
+            _base64 = await GetFileAsBase64Url(Url);
+            StateHasChanged();
+        }
+    }
+
+    public async static Task<string> GetFileAsBase64Url(string url)
+    {
+        using (var handler = new HttpClientHandler { })
+        using (var client = new HttpClient(handler))
+        {
+            var bytes = await client.GetByteArrayAsync(url);
+            var base64 = Convert.ToBase64String(bytes);
+            var result = string.Format("data:application/pdf;base64,{0}", base64);
+            return result;
+        }
+    }
+}

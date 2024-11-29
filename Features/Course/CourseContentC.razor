@@ -13,6 +13,7 @@
                 </div>
                 <span>@(courseSection.IsExpanded ? "▼" : "▶")</span>
             </button>
+
             @if (courseSection.IsExpanded)
             {
                 <div class="accordion-body">
@@ -36,12 +37,15 @@
 </div>
 
 @code {
+    #region Parameters
     [Parameter]
     public required List<CourseSection> Sections { get; set; }
 
     [Parameter]
     public EventCallback<Lesson> LessonClicked { get; set; }
+    #endregion
 
+    #region Functions
     private void ToggleSection(CourseSection courseSection)
     {
         courseSection.IsExpanded = !courseSection.IsExpanded;
@@ -57,4 +61,5 @@
     {
         return int.TryParse(duration.Split(' ')[0], out var result) ? result : 0;
     }
+    #endregion
 }

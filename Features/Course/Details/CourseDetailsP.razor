@@ -45,11 +45,15 @@
             <div class="content-division">
                 @* Contents *@
                 <div>
-                    <RadzenAccordion class="course-accordion" SelectedIndex="0">
+                    <RadzenAccordion class="course-accordion">
                         <Items>
+                            @{
+                                var first = true;
+                            }
+
                             @foreach (var chapter in _course.CourseContents)
                             {
-                                <RadzenAccordionItem Text="@chapter.Name">
+                                <RadzenAccordionItem Text="@chapter.Name" Selected=@first>
                                     @foreach (var unit in chapter.SubContents)
                                     {
                                         <div class="course-sub-content">
@@ -57,19 +61,24 @@
                                         </div>
                                     }
                                 </RadzenAccordionItem>
+
+                                if (first)
+                                {
+                                    first = false;
+                                }
                             }
                         </Items>
                     </RadzenAccordion>
                 </div>
 
                 @* Includes *@
-                <div>
+                <div style="display: flex;flex-direction: column;gap: 1rem;">
                     <span class="title-includes">
                         This course includes:
                     </span>
 
-                    <div >
-                        <CourseIncludesC class="accot" Icon="smart_display" Text=@(_course.VideoTime + " minutes on-demand video") />
+                    <div style="display: flex;flex-direction: column;gap: 1rem;padding-left: 1rem;">
+                        <CourseIncludesC Icon="smart_display" Text=@(_course.VideoTime + " minutes on-demand video") />
                         <CourseIncludesC Icon="analytics" Text=@(_course.QuizCount + " quizzes") />
                         <CourseIncludesC Icon="article" Text=@(_course.QuizCount + " articles") />
                         <CourseIncludesC Icon="download" Text=@(_course.QuizCount + " downloadable resources") />
@@ -79,7 +88,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 @code {

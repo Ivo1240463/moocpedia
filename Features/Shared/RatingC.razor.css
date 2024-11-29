@@ -1,7 +1,9 @@
 ﻿.main-rating-container {
     --star-bg: white;
     --star-color: hsl(38 90% 55%);
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    align-items: center;
 }
 
 .star {
