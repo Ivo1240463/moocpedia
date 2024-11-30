@@ -6,17 +6,24 @@
 <div class="course-container">
     <div class="course-top">
         <div class="video-section">
-            @if (!string.IsNullOrEmpty(VideoSource))
+            @if (!string.IsNullOrEmpty(ContentSource))
             {
-                <iframe width="560"
-                        height="315"
-                        src="@VideoSource"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen
-                        class="course-video">
-                </iframe>
+                @if (CurrentLesson?.ContentType == "video")
+                {
+                    <iframe width="560"
+                            height="315"
+                            src="@ContentSource"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen
+                            class="course-video">
+                    </iframe>
+                }
+                else if (CurrentLesson?.ContentType == "pdf")
+                {
+                    <PDFViewerC Url="@ContentSource" />
+                }
             }
             else
             {
@@ -99,25 +106,32 @@
 
 @code {
     private string selectedTab = "Overview";
-    private string? VideoSource;
+    private string? ContentSource;
+    private Lesson? CurrentLesson;
 
     protected override void OnInitialized()
     {
         var firstLesson = CourseSections.FirstOrDefault()?.Lessons?.FirstOrDefault();
         if (firstLesson != null)
         {
-            VideoSource = firstLesson.VideoPath;
+            SetCurrentLesson(firstLesson);
         }
+    }
+
+    private void OnLessonClicked(Lesson lesson)
+    {
+        SetCurrentLesson(lesson);
+    }
+
+    private void SetCurrentLesson(Lesson lesson)
+    {
+        CurrentLesson = lesson;
+        ContentSource = lesson.Path;
     }
 
     private void SelectTab(string tab)
     {
         selectedTab = tab;
-    }
-
-    private void OnLessonClicked(Lesson lesson)
-    {
-        VideoSource = lesson.VideoPath;
     }
 
     private List<CourseSection> CourseSections = new()
@@ -127,10 +141,10 @@
             Title = "Section 1: Photovoltaics - Principles and Operation",
             Lessons = new List<Lesson>
             {
-                new Lesson { Name = "Introduction to Photovoltaics", Duration = "2 min", VideoPath = "https://drive.google.com/file/d/1CXy1-qZq3W_1oUt_NfGpDKtCSkgMvXYG/preview", IsWatched = true },
-                new Lesson { Name = "Photovoltaic Cells Operation", Duration = "2 min", VideoPath = "https://drive.google.com/file/d/16pOcNw9P9-o0B7Jn9gZyRHx9T9laLF-L/preview" },
-                new Lesson { Name = "Types of Photovoltaic Cells", Duration = "1 min", VideoPath = "https://drive.google.com/file/d/1UD32l7BIgKg6RkeMTDqrTt6iAshFaFIh/preview" }
-				// new Lesson { Name = "Applications of Photovoltaics", Duration = "5 min", VideoPath = "https://drive.google.com/file/d/1UD32l7BIgKg6RkeMTDqrTt6iAshFaFIh/preview" }
+                new Lesson { Name = "Introduction to Photovoltaics", Duration = "2 min", Path = "https://drive.google.com/file/d/1CXy1-qZq3W_1oUt_NfGpDKtCSkgMvXYG/preview", ContentType = "video", IsWatched = true },
+                new Lesson { Name = "Photovoltaic Cells Operation", Duration = "2 min", Path = "https://drive.google.com/file/d/16pOcNw9P9-o0B7Jn9gZyRHx9T9laLF-L/preview", ContentType = "video" },
+                new Lesson { Name = "Types of Photovoltaic Cells", Duration = "1 min", Path = "https://drive.google.com/file/d/1UD32l7BIgKg6RkeMTDqrTt6iAshFaFIh/preview", ContentType = "video" },
+                new Lesson { Name = "Applications of Photovoltaics", Duration = "2 min", Path = "pdfs/Modulo3Unit1.pdf", ContentType = "pdf" }
             }
         },
         new CourseSection
@@ -138,23 +152,12 @@
             Title = "Section 2: Inverters - Functionalities and Systems",
             Lessons = new List<Lesson>
             {
-                new Lesson { Name = "What are Inverters?", Duration = "1 min", VideoPath = "videos/inverters_introduction.mp4" },
-                new Lesson { Name = "Inverters: Functionalities and Systems", Duration = "5 min", VideoPath = "https://drive.google.com/file/d/1bnFgliGLbodCcbfCqu_QkucjuQpu0mVG/preview" },
-                new Lesson { Name = "Inverters: Components", Duration = "5 min", VideoPath = "videos/inverters_types_and_applications.mp4" }
-                // Assignment
-               // Quiz
-               // Lecture text
-            }
-        },
-        new CourseSection
-        {
-            Title = "Section 3: Batteries - Types and Applications",
-            Lessons = new List<Lesson>
-            {
-                // Document - new Lesson { Name = "History of Batteries", Duration = "2 min", VideoPath = "videos/introduction_to_batteries.mp4" },
-                new Lesson { Name = "Battery Types", Duration = "10 min", VideoPath = "videos/battery_technologies.mp4" },
-                new Lesson { Name = "Battery Compositions", Duration = "10 min", VideoPath = "videos/battery_technologies.mp4" }
-                // Quiz
+                new Lesson { Name = "What are Inverters?", Duration = "1 min", Path = "pdfs/Modulo5Unit1.pdf", ContentType = "pdf" },
+                new Lesson { Name = "Inverters: Functionalities and Systems", Duration = "5 min", Path = "https://drive.google.com/file/d/1bnFgliGLbodCcbfCqu_QkucjuQpu0mVG/preview", ContentType = "video" },
+                new Lesson { Name = "Inverters: Components", Duration = "1 min", Path = "pdfs/Modulo5Unit2.pdf", ContentType = "pdf" },
+                new Lesson { Name = "Activity: Matterport", Duration = "1 min", Path = "pdfs/Modulo5Unit3.pdf", ContentType = "pdf" },
+                new Lesson { Name = "Knowledge check", Duration = "3 min", Path = "pdfs/Modulo5Unit4.pdf", ContentType = "pdf" },
+                new Lesson { Name = "Summary", Duration = "1 min", Path = "pdfs/Modulo5Unit5.pdf", ContentType = "pdf" },
             }
         }
     };
