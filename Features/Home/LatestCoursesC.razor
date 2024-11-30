@@ -6,11 +6,13 @@
             <h1>Explore our latest MOOC</h1>
         </div>
 
-        <RadzenCarousel class="l-carousel" Style="padding: 0 75px;" PagerOverlay=false>
+        <RadzenCarousel PagerOverlay="false" ButtonShade="Shade.Default">
             <Items>
                 @foreach (var course in _courses)
                 {
-                    <HomeCarouselCard Course="course" />
+                    <RadzenCarouselItem>
+                        <HomeCarouselCard Course="course" />
+                    </RadzenCarouselItem>
                 }
             </Items>
         </RadzenCarousel>

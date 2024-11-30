@@ -2,7 +2,7 @@
 
 @inject NavigationManager _nav
 
-<RadzenCard Style="width: 350px; min-height: 250px; padding: 0; cursor: pointer" @onclick="GoToCourseDetailsClick">
+<RadzenCard Style="width: 350px; min-height: 250px; padding: 0; cursor: pointer">
     @* Image *@
     <div class="base-image-container home-card" style="background-image: url('images/course-img.png'); padding-top: 0.5rem;" />
 
@@ -20,7 +20,7 @@
         </div>
 
         @* Rating & Start *@
-        <div class="base-container" style="justify-content: space-between">
+        <div class="base-container" style="flex-wrap: wrap; gap: 0.75rem;">
             <div class="base-container">
                 <div>
                     <RatingC Rating="Course.Ratings" />
@@ -34,6 +34,7 @@
 
             <div>
                 <RadzenButton Text="Start" Click="GoToCourseClick" />
+                <RadzenButton Icon="more_vert" Click="GoToCourseDetailsClick" Variant="Variant.Text" />
             </div>
         </div>
     </div>
