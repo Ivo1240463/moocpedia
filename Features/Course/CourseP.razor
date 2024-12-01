@@ -14,13 +14,13 @@
                 @if (CurrentLesson?.ContentType == "video")
                 {
                     <iframe width="560"
-                            height="315"
-                            src="@ContentSource"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen
-                            class="course-video">
+                    height="315"
+                    src="@ContentSource"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    class="course-video">
                     </iframe>
                 }
                 else if (CurrentLesson?.ContentType == "pdf")
@@ -161,6 +161,17 @@
                 new Lesson { Name = "Activity: Matterport", Duration = "1 min", Path = "pdfs/Modulo5Unit4.pdf", ContentType = "pdf" },
                 new Lesson { Name = "Knowledge check", Duration = "3 min", Path = "pdfs/Modulo5Unit5.pdf", ContentType = "pdf" },
                 new Lesson { Name = "Summary", Duration = "1 min", Path = "pdfs/Modulo5Unit6.pdf", ContentType = "pdf" },
+            }
+        },
+        new CourseSection
+        {
+            Title = "Section 3: Batteries - Types and Applications",
+            Lessons = new List<Lesson>
+            {
+                new Lesson { Name = "History of Batteries", Duration = "2 min", Path = "pdfs/Modulo7Unit1.pdf", ContentType = "pdf" },
+                new Lesson { Name = "Battery Types", Duration = "3 min", Path = "https://drive.google.com/file/d/1uRyxWyb_wxLM9XAwbtKWrUR2_Rx3ZoOM/preview", ContentType = "video" },
+                new Lesson { Name = "Battery Compositions", Duration = "3 min", Path = "https://drive.google.com/file/d/1Hhy1wH57K0PWm9VLuZrgNbhHYwa47Q1S/preview", ContentType = "video" },
+                new Lesson { Name = "Knowledge", Duration = "1 min", Path = "pdfs/Modulo7Unit4.pdf", ContentType = "pdf" },
             }
         }
     };

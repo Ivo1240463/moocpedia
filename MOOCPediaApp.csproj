@@ -24,7 +24,6 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <Folder Include="wwwroot\pdfs\" />
 	  <Folder Include="wwwroot\videos\" />
 	</ItemGroup>
 
