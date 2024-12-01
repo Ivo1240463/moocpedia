@@ -2,7 +2,7 @@
 
 @if (_base64 != null)
 {
-    <iframe src="@Url" width="800" height="600" frameborder="0"></iframe>
+    <iframe src="@Url" width="@Width" height="@Height" frameborder="0"></iframe>
 }
 
 @code {
@@ -10,10 +10,10 @@
     public string Url { get; set; } = string.Empty;
 
     [Parameter]
-    public int Width { get; set; } = 800;
+    public string Width { get; set; } = "100%";
 
     [Parameter]
-    public int Height { get; set; } = 600;
+    public string Height { get; set; } = "100%";
 
     private string? _base64;
 
