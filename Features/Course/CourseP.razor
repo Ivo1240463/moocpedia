@@ -1,7 +1,10 @@
 ﻿@page "/course"
+
 @using MOOCPediaApp.Models
-@inject NavigationManager NavigationManager
 @using MOOCPediaApp.Features.Course
+
+@inject NavigationManager NavigationManager
+@attribute [Authorize]
 
 <div class="course-container">
     <div class="course-top">
@@ -154,10 +157,10 @@
             {
                 new Lesson { Name = "What are Inverters?", Duration = "1 min", Path = "pdfs/Modulo5Unit1.pdf", ContentType = "pdf" },
                 new Lesson { Name = "Inverters: Functionalities and Systems", Duration = "5 min", Path = "https://drive.google.com/file/d/1bnFgliGLbodCcbfCqu_QkucjuQpu0mVG/preview", ContentType = "video" },
-                new Lesson { Name = "Inverters: Components", Duration = "1 min", Path = "pdfs/Modulo5Unit2.pdf", ContentType = "pdf" },
-                new Lesson { Name = "Activity: Matterport", Duration = "1 min", Path = "pdfs/Modulo5Unit3.pdf", ContentType = "pdf" },
-                new Lesson { Name = "Knowledge check", Duration = "3 min", Path = "pdfs/Modulo5Unit4.pdf", ContentType = "pdf" },
-                new Lesson { Name = "Summary", Duration = "1 min", Path = "pdfs/Modulo5Unit5.pdf", ContentType = "pdf" },
+                new Lesson { Name = "Inverters: Components", Duration = "1 min", Path = "pdfs/Modulo5Unit3.pdf", ContentType = "pdf" },
+                new Lesson { Name = "Activity: Matterport", Duration = "1 min", Path = "pdfs/Modulo5Unit4.pdf", ContentType = "pdf" },
+                new Lesson { Name = "Knowledge check", Duration = "3 min", Path = "pdfs/Modulo5Unit5.pdf", ContentType = "pdf" },
+                new Lesson { Name = "Summary", Duration = "1 min", Path = "pdfs/Modulo5Unit6.pdf", ContentType = "pdf" },
             }
         }
     };

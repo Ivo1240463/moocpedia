@@ -164,7 +164,7 @@ code {
     border: 0px;
     background: transparent;
     cursor: pointer;
-    flex: 1 1 auto; 
+    flex: 1 1 auto;
     text-align: center;
 }
 
@@ -370,11 +370,11 @@ code {
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
- .lesson-check:hover {
-    transform: scale(1.05);
-    color: #333;
-    font-weight: bold;
- }
+    .lesson-check:hover {
+        transform: scale(1.05);
+        color: #333;
+        font-weight: bold;
+    }
 
 .lesson-duration {
     font-size: 12px;
@@ -395,6 +395,20 @@ code {
     align-items: center;
     gap: 8px;
 }
+
+.not-allowed {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    .not-allowed p {
+        line-height: 1.5;
+        text-align: center;
+    }
 
 @media screen and (max-width: 1024px) {
     .course-top {
